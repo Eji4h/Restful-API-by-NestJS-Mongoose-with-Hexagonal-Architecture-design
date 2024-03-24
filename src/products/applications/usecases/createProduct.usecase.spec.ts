@@ -1,8 +1,9 @@
 import { mock } from 'jest-mock-extended';
+
 import { IProduct } from '../domains/product';
 import { ProductRepository } from '../ports/product.repository';
-import { CreateProductUseCase } from './createProduct.usecase';
 import { CreateProductCommand } from './createProduct.command';
+import { CreateProductUseCase } from './createProduct.usecase';
 
 describe('Create Product Use Case', () => {
   it('should be create product.', async () => {

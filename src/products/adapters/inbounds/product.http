@@ -1,11 +1,20 @@
-###
+### Create a new product
 POST http://localhost:3000/products
 content-type: application/json
 
 {
-	"name": "Product 1",
-	"detail": "Product 1 detail",
+	"name": "Product 3",
+	"detail": "Product 3 detail",
 	"price": 100,
 	"quantity": 10
 }
+
+### Get all products
+GET http://localhost:3000/products
+content-type: application/json
+###
+
+### Get by id
+GET http://localhost:3000/products/65ffab82e948ba64474b2962
+content-type: application/json
 ###

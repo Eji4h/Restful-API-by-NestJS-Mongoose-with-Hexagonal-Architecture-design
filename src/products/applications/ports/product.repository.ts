@@ -7,4 +7,6 @@ export const productRepositoryToken = productsRepositoryTokenSymbol.toString();
 
 export interface ProductRepository {
   create(product: IProduct): Promise<IProduct>;
+  getAll(): Promise<IProduct[]>;
+  getById(id: string): Promise<IProduct>;
 }

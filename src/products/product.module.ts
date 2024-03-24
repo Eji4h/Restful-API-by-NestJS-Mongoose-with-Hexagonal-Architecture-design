@@ -1,13 +1,16 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+
+import { ProductController } from './adapters/inbounds/product.controller';
+import { ProductMongoRepository } from './adapters/outbounds/product.mongo.repository';
 import {
   ProductSchema,
   productsCollectionName,
 } from './adapters/outbounds/product.mongo.schema';
-import { ProductController } from './adapters/inbounds/product.controller';
-import { CreateProductUseCase } from './applications/usecases/createProduct.usecase';
 import { productRepositoryToken } from './applications/ports/product.repository';
-import { ProductMongoRepository } from './adapters/outbounds/product.mongo.repository';
+import { CreateProductUseCase } from './applications/usecases/createProduct.usecase';
+import { GetAllProductsUseCase } from './applications/usecases/getAllProducts.usecase';
+import { GetProductByIdUseCase } from './applications/usecases/getProductById.usecase';
 
 @Module({
   imports: [
@@ -18,6 +21,8 @@ import { ProductMongoRepository } from './adapters/outbounds/product.mongo.repos
   controllers: [ProductController],
   providers: [
     CreateProductUseCase,
+    GetAllProductsUseCase,
+    GetProductByIdUseCase,
     {
       provide: productRepositoryToken,
       useClass: ProductMongoRepository,

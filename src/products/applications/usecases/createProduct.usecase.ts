@@ -1,9 +1,10 @@
 import { Inject, Injectable } from '@nestjs/common';
+
+import { IProduct } from '../domains/product';
 import {
   ProductRepository,
   productRepositoryToken,
 } from '../ports/product.repository';
-import { IProduct } from '../domains/product';
 import { CreateProductCommand } from './createProduct.command';
 
 @Injectable()

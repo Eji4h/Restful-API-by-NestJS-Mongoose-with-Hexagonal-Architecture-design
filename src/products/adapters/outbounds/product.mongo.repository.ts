@@ -1,11 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { ProductRepository } from '../../applications/ports/product.repository';
-import { IProduct, Product } from '../../applications/domains/product';
 import { InjectModel } from '@nestjs/mongoose';
-import { productsCollectionName } from './product.mongo.schema';
-import { Model } from 'mongoose';
-import { ProductEntity } from './product.entity';
 import { Builder } from 'builder-pattern';
+import { Model } from 'mongoose';
+
+import { IProduct, Product } from '../../applications/domains/product';
+import { ProductRepository } from '../../applications/ports/product.repository';
+import { ProductEntity } from './product.entity';
+import { productsCollectionName } from './product.mongo.schema';
 
 @Injectable()
 export class ProductMongoRepository implements ProductRepository {
@@ -18,6 +19,16 @@ export class ProductMongoRepository implements ProductRepository {
     const newProduct = new this.productModel(product);
     const productCreated = await newProduct.save();
     return ProductMongoRepository.toDomain(productCreated);
+  }
+
+  async getAll(): Promise<IProduct[]> {
+    const products = await this.productModel.find().lean().exec();
+    return products.map(ProductMongoRepository.toDomain);
+  }
+
+  async getById(id: string): Promise<IProduct> {
+    const product = await this.productModel.findById(id).lean().exec();
+    return ProductMongoRepository.toDomain(product);
   }
 
   static toDomain(product: ProductEntity): IProduct {
