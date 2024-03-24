@@ -1,0 +1,15 @@
+### Create user
+POST http://localhost:3000/users
+content-type: application/json
+
+{
+  "username": "myUsername2",
+  "email": "myEmail2@gmail.com",
+	"password": "myPassword123"
+}
+###
+
+### Get user by username
+GET http://localhost:3000/users?username=myUsername2
+content-type: application/json
+###
