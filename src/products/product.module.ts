@@ -11,6 +11,7 @@ import { productRepositoryToken } from './applications/ports/product.repository'
 import { CreateProductUseCase } from './applications/usecases/createProduct.usecase';
 import { GetAllProductsUseCase } from './applications/usecases/getAllProducts.usecase';
 import { GetProductByIdUseCase } from './applications/usecases/getProductById.usecase';
+import { UpdateProductByIdUseCase } from './applications/usecases/updateProductById.usecase';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { GetProductByIdUseCase } from './applications/usecases/getProductById.us
     CreateProductUseCase,
     GetAllProductsUseCase,
     GetProductByIdUseCase,
+    UpdateProductByIdUseCase,
     {
       provide: productRepositoryToken,
       useClass: ProductMongoRepository,

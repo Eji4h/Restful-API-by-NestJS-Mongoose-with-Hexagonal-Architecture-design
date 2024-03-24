@@ -18,3 +18,15 @@ content-type: application/json
 GET http://localhost:3000/products/65ffab82e948ba64474b2962
 content-type: application/json
 ###
+
+### Update by id
+PUT http://localhost:3000/products/65ffab82e948ba64474b2962
+content-type: application/json
+
+{
+	"name": "Product 3",
+	"detail": "Product 3 detail",
+	"price": 10,
+	"quantity": 100
+}
+###
