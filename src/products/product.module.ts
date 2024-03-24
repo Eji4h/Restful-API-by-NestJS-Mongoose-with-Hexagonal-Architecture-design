@@ -9,6 +9,7 @@ import {
 } from './adapters/outbounds/product.mongo.schema';
 import { productRepositoryToken } from './applications/ports/product.repository';
 import { CreateProductUseCase } from './applications/usecases/createProduct.usecase';
+import { DeleteProductByIdUseCase } from './applications/usecases/deleteProductById.usecase';
 import { GetAllProductsUseCase } from './applications/usecases/getAllProducts.usecase';
 import { GetProductByIdUseCase } from './applications/usecases/getProductById.usecase';
 import { UpdateProductByIdUseCase } from './applications/usecases/updateProductById.usecase';
@@ -22,6 +23,7 @@ import { UpdateProductByIdUseCase } from './applications/usecases/updateProductB
   controllers: [ProductController],
   providers: [
     CreateProductUseCase,
+    DeleteProductByIdUseCase,
     GetAllProductsUseCase,
     GetProductByIdUseCase,
     UpdateProductByIdUseCase,

@@ -10,4 +10,5 @@ export interface ProductRepository {
   getAll(): Promise<IProduct[]>;
   getById(id: string): Promise<IProduct>;
   updateById(id: string, product: Partial<IProduct>): Promise<IProduct>;
+  deleteById(id: string): Promise<void>;
 }

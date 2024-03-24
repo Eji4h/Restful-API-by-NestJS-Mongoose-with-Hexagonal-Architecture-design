@@ -1,7 +1,18 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Put,
+} from '@nestjs/common';
 
 import { CreateProductCommand } from '../../applications/usecases/createProduct.command';
 import { CreateProductUseCase } from '../../applications/usecases/createProduct.usecase';
+import { DeleteProductByIdCommand } from '../../applications/usecases/deleteProductById.command';
+import { DeleteProductByIdUseCase } from '../../applications/usecases/deleteProductById.usecase';
 import { GetAllProductsUseCase } from '../../applications/usecases/getAllProducts.usecase';
 import { GetProductByIdQuery } from '../../applications/usecases/getProductById.query';
 import { GetProductByIdUseCase } from '../../applications/usecases/getProductById.usecase';
@@ -17,6 +28,7 @@ export class ProductController {
     private readonly getAllProductsUseCase: GetAllProductsUseCase,
     private readonly getProductByIdUseCase: GetProductByIdUseCase,
     private readonly updateProductByIdUseCase: UpdateProductByIdUseCase,
+    private readonly deleteProductByIdUseCase: DeleteProductByIdUseCase,
   ) {}
 
   @Post()
@@ -39,7 +51,7 @@ export class ProductController {
   }
 
   @Put(':id')
-  updateById(
+  putById(
     @Param('id') id: string,
     @Body() updateProductDto: UpdateProductByIdDto,
   ) {
@@ -48,5 +60,25 @@ export class ProductController {
       product: updateProductDto,
     };
     return this.updateProductByIdUseCase.execute(command);
+  }
+
+  @Patch(':id')
+  patchById(
+    @Param('id') id: string,
+    @Body() updateProductDto: UpdateProductByIdDto,
+  ) {
+    const command: UpdateProductByIdCommand = {
+      id,
+      product: updateProductDto,
+    };
+    return this.updateProductByIdUseCase.execute(command);
+  }
+
+  @Delete(':id')
+  deleteById(@Param('id') id: string) {
+    const command: DeleteProductByIdCommand = {
+      id,
+    };
+    return this.deleteProductByIdUseCase.execute(command);
   }
 }
