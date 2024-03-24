@@ -1,4 +1,0 @@
-POST http://localhost:3000/cats
-
-###
-Get http://localhost:3000/cats
