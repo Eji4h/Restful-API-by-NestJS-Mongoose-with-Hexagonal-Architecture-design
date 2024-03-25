@@ -1,0 +1,9 @@
+### Login
+POST http://localhost:3000/login
+content-type: application/json
+
+{
+  "username": "borntodev",
+	"password": "myPassword123"
+}
+###

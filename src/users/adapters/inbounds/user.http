@@ -3,13 +3,13 @@ POST http://localhost:3000/users
 content-type: application/json
 
 {
-  "username": "myUsername2",
-  "email": "myEmail2@gmail.com",
+  "username": "borntodev",
+  "email": "borntodev@gmail.com",
 	"password": "myPassword123"
 }
 ###
 
 ### Get user by username
-GET http://localhost:3000/users?username=myUsername2
+GET http://localhost:3000/users?username=borntodev
 content-type: application/json
 ###
