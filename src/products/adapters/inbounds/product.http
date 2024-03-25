@@ -1,6 +1,20 @@
+### Login
+# @name login
+POST http://localhost:3000/login
+content-type: application/json
+
+{
+  "username": "borntodev",
+	"password": "myPassword123"
+}
+###
+
+@myAccessToken = {{login.response.body.accessToken}}
+
 ### Create a new product
 POST http://localhost:3000/products
 content-type: application/json
+authorization: Bearer {{myAccessToken}}
 
 {
 	"name": "Product 4",
@@ -12,16 +26,19 @@ content-type: application/json
 ### Get all products
 GET http://localhost:3000/products
 content-type: application/json
+authorization: Bearer {{myAccessToken}}
 ###
 
 ### Get by id
 GET http://localhost:3000/products/65ffbc35f6ea5ef91ab97444
 content-type: application/json
+authorization: Bearer {{myAccessToken}}
 ###
 
 ### Put by id
 PUT http://localhost:3000/products/65ffbc35f6ea5ef91ab97444
 content-type: application/json
+authorization: Bearer {{myAccessToken}}
 
 {
 	"name": "Product 4",
@@ -34,6 +51,7 @@ content-type: application/json
 ### Patch by id
 PATCH http://localhost:3000/products/65ffbc35f6ea5ef91ab97444
 content-type: application/json
+authorization: Bearer {{myAccessToken}}
 
 {
 	"price": 102,
@@ -44,4 +62,5 @@ content-type: application/json
 ### Delete by id
 DELETE http://localhost:3000/products/65ffbc35f6ea5ef91ab97444
 content-type: application/json
+authorization: Bearer {{myAccessToken}}
 ###

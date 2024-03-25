@@ -7,8 +7,10 @@ import {
   Patch,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 
+import { JwtAuthGuard } from '../../../auth/jwtAuth.guard';
 import { CreateProductCommand } from '../../applications/usecases/createProduct.command';
 import { CreateProductUseCase } from '../../applications/usecases/createProduct.usecase';
 import { DeleteProductByIdCommand } from '../../applications/usecases/deleteProductById.command';
@@ -31,17 +33,20 @@ export class ProductController {
     private readonly deleteProductByIdUseCase: DeleteProductByIdUseCase,
   ) {}
 
+  @UseGuards(JwtAuthGuard)
   @Post()
   async createProduct(@Body() createProductDto: CreateProductDto) {
     const productCreateCommand: CreateProductCommand = createProductDto;
     return this.createProductUseCase.execute(productCreateCommand);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get()
   getAll() {
     return this.getAllProductsUseCase.execute();
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   getById(@Param('id') id: string) {
     const query: GetProductByIdQuery = {
@@ -50,6 +55,7 @@ export class ProductController {
     return this.getProductByIdUseCase.execute(query);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Put(':id')
   putById(
     @Param('id') id: string,
@@ -62,6 +68,7 @@ export class ProductController {
     return this.updateProductByIdUseCase.execute(command);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Patch(':id')
   patchById(
     @Param('id') id: string,
@@ -74,6 +81,7 @@ export class ProductController {
     return this.updateProductByIdUseCase.execute(command);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Delete(':id')
   deleteById(@Param('id') id: string) {
     const command: DeleteProductByIdCommand = {
